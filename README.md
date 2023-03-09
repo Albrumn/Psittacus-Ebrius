@@ -6,7 +6,7 @@ Latin Language Learning App
   alt="Psittacus Ebrius Logo"
   style="height: 64px">
 
-"Linguās mēcum discite!"
+"Linguam Latinam mēcum discite!"
 
 ## Inspiration
 After completing the short, fourteen-unit Duolingo Latin course, I had a discussion with its former Trailblazer about the prospect of the course being extended.  It wasn't promising.  But this sparked an idea:  why not develop my own online Latin course?
