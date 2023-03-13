@@ -1,4 +1,4 @@
-# <img src="https://github.com/CoryDerGrosse/Psittacus-Ebrius/blob/main/src/img/pe_logo_black.png" alt="Psittacus Ebrius Logo" style="height: 64px;"> Psittacus Ebrius <img src="https://github.com/CoryDerGrosse/Psittacus-Ebrius/blob/main/src/img/pe_logo_black.png" alt="Psittacus Ebrius Logo" style="height: 64px; transform: scale(-1);">
+# <img src="https://github.com/CoryDerGrosse/Psittacus-Ebrius/blob/main/src/img/pe_logo_black.png" alt="Psittacus Ebrius Logo" style="height: 32px;"> Psittacus Ebrius <img src="https://github.com/CoryDerGrosse/Psittacus-Ebrius/blob/main/src/img/pe_logo_black.png" alt="Psittacus Ebrius Logo" style="height: 32px; transform: scaleX(-1);">
 "Linguam Latinam mēcum discite!" — a Latin language learning app
 
 ## Production Blog

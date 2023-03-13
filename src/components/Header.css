@@ -1,0 +1,26 @@
+header {
+    background: linear-gradient(var(--grey-100), var(--grey-300));
+    border-bottom: 1px solid var(--grey-600);
+    box-shadow: 0 0 2rem var(--grey-000);
+    color: var(--grey-800);
+    padding: 0.5rem;
+}
+
+div {
+    align-items: center;
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+
+h1 {
+    font-size: 4rem;
+    font-weight: 200;
+}
+
+p {
+    color: var(--grey-700);
+    font-size: 1.25rem;
+    margin-top: -0.75rem;
+    text-align: center;
+}
