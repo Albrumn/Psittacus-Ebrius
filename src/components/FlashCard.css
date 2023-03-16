@@ -1,0 +1,65 @@
+.activity-flash-card {
+    display: flex;
+    flex-direction: column;
+    margin: 4rem;
+    width: 100%;
+}
+
+.flash-card-container {
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    min-height: clamp(125px, 25vw, 250px);
+    perspective: 50rem;
+    position: relative;
+    width: clamp(400px, 50vw, 500px);
+}
+
+.flash-card-side {
+    align-items: center;
+    background: linear-gradient(var(--grey-700), var(--grey-600));
+    border: 1px solid var(--grey-700);
+    border-radius: 0.5rem;
+    box-shadow: var(--box-shadow);
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    position: absolute;
+    transform: rotateY(45deg);
+    transition: 150ms;
+    width: 100%;
+}
+
+.flash-card-side > p {
+    color: var(--grey-100);
+    font-size: 1.5rem;
+}
+
+.flash-card-back {
+    transform: rotateY(90deg);
+}
+
+.flash-card-front {
+    transform: rotateY(-90deg);
+}
+
+.flash-card-side::before {
+    color: var(--grey-500);
+    font-size: 0.75rem;
+    left: 0.5rem;
+    position: absolute;
+    text-shadow: 1px 1px 0 var(--grey-800);
+    top: 0.5rem;
+}
+
+.flash-card-back::before {
+    content: "Latin";
+}
+
+.flash-card-front::before {
+    content: "English";
+}
+
+.flash-card--show {
+    transform: rotateY(0deg);
+}
