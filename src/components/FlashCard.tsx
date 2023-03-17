@@ -1,30 +1,30 @@
 import React from 'react';
-import "./FlashCard.css";
+import "./FlashCard.scoped.css";
+import { appModes } from '../contants/Global';
 
 export default function FlashCard(props: any) {
     const flipSpeed = props.flipSpeed;
-    const sidesCount = 2;
-    const [showFront, setShowFront] = React.useState(props.showFront);
-    const [showBack, setShowBack] = React.useState(!props.showFront);
+    const [showTargetLang, setShowTargetLang] = React.useState(props.showTargetLang);
+    const [showSourceLang, setShowSourceLang] = React.useState(!props.showTargetLang);
 
     React.useEffect(() => {
-        if (props.showFront) {
-            setShowBack(false);
-            setTimeout(() => { setShowFront(true); }, flipSpeed);
+        if (props.showTargetLang) {
+            setShowSourceLang(false);
+            setTimeout(() => { setShowTargetLang(true); }, flipSpeed);
         }
         else {
-            setShowFront(false);
-            setTimeout(() => { setShowBack(true); }, flipSpeed);
+            setShowTargetLang(false);
+            setTimeout(() => { setShowSourceLang(true); }, flipSpeed);
         }
-    }, [props.showFront]);
+    }, [props.showTargetLang]);
 
     return (
-        <div className="flash-card-container" onClick={props.onClick}>
-            <div className={"flash-card-side flash-card-front" + (showFront ? " flash-card--show" : "")}>
-                <p>{props.cardData[props.cardDataIndex]}</p>
+        <div className={"flash-card-container " + props.slideClass} onClick={props.onClick}>
+            <div className={"flash-card-side flash-card-target-lang" + (showTargetLang ? " flash-card--show" : "")} data-language={appModes.TRG} data-number={props.cardNumber}>
+                <p>{props.cardData.trg}</p>
             </div>
-            <div className={"flash-card-side flash-card-back" + (showBack ? " flash-card--show" : "")}>
-                <p>{props.cardData[(props.cardDataIndex + 1) % sidesCount]}</p>
+            <div className={"flash-card-side flash-card-source-lang" + (showSourceLang ? " flash-card--show" : "")} data-language={appModes.SRC} data-number={props.cardNumber}>
+                <p>{props.cardData.src}</p>
             </div>
         </div>
     );

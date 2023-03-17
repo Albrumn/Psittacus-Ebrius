@@ -1,5 +1,4 @@
-import "./Header.css";
-import logo from "../img/logo.svg";
+import "./Header.scoped.css";
 
 export default function Header() {
     return (

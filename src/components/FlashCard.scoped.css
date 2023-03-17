@@ -2,17 +2,45 @@
     display: flex;
     flex-direction: column;
     margin: 4rem;
+    overflow: hidden;
     width: 100%;
+}
+
+.activity-flash-card > p {
+    color: var(--grey-800);
 }
 
 .flash-card-container {
     cursor: pointer;
     display: flex;
     justify-content: center;
+    margin-left: 0rem;
     min-height: clamp(125px, 25vw, 250px);
+    opacity: 1;
     perspective: 50rem;
     position: relative;
+    transition: 0ms;
     width: clamp(400px, 50vw, 500px);
+}
+
+.flash-card-text {
+    opacity: 1;
+    margin-left: 0rem;
+    transition: 0ms;
+}
+
+.flash-card-slide-trans {
+    transition: 150ms;
+}
+
+.flash-card-slide-left {
+    opacity: 0;
+    margin-left: -16rem;
+}
+
+.flash-card-slide-right {
+    opacity: 0;
+    margin-left: 16rem;
 }
 
 .flash-card-side {
@@ -35,29 +63,32 @@
     font-size: 1.5rem;
 }
 
-.flash-card-back {
+.flash-card-source-lang {
     transform: rotateY(90deg);
 }
 
-.flash-card-front {
+.flash-card-target-lang {
     transform: rotateY(-90deg);
+}
+
+.flash-card-side::after {
+    color: var(--grey-500);
+    content: attr(data-number);
+    font-size: 0.75rem;
+    position: absolute;
+    right: 0.5rem;
+    text-shadow: 1px 1px 0 var(--grey-800);
+    top: 0.5rem;
 }
 
 .flash-card-side::before {
     color: var(--grey-500);
+    content: attr(data-language);
     font-size: 0.75rem;
     left: 0.5rem;
     position: absolute;
     text-shadow: 1px 1px 0 var(--grey-800);
     top: 0.5rem;
-}
-
-.flash-card-back::before {
-    content: "Latin";
-}
-
-.flash-card-front::before {
-    content: "English";
 }
 
 .flash-card--show {
