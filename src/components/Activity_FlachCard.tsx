@@ -1,6 +1,7 @@
 import React from 'react';
 import FlashCard from "./FlashCard";
-import { langModes } from '../contants/Global';
+import "./FlashCard.scoped.css";
+import { langModes, svg } from '../constants/Global';
 
 //@ts-ignore
 export default function Activity_FlashCard() {
@@ -12,6 +13,7 @@ export default function Activity_FlashCard() {
     const [isFlipping, setIsFlipping] = React.useState(false);
     const [isSliding, setIsSliding] = React.useState(false);
     const [langMode, setLangMode] = React.useState(langModes.TRG_TO_SRC);
+    const [showControls, setShowControls] = React.useState(false);
     const [showTargetLang, setShowTargetLang] = React.useState(true);
     const [slideDirection, setSlideDirection] = React.useState(slideDirections.NONE)
     const [transitionClass, setTransitionClass] = React.useState("");
@@ -24,7 +26,9 @@ export default function Activity_FlashCard() {
         { src: "boy", trg: "puer" },
         { src: "girl", trg: "puella" },
         { src: "son", trg: "fīlius" },
-        { src: "daughter", trg: "fīlia" }
+        { src: "daughter", trg: "fīlia" },
+        { src: "older adult", trg: "senex" },
+        { src: "young adult", trg: "iuvenis" }
     ]);
 
     function decCardIndex() {
@@ -131,22 +135,29 @@ export default function Activity_FlashCard() {
         <section className="activity">
             <div className="activity-flash-card">
                 <p>Sample Unit — Flash Cards</p>
-                <FlashCard 
-                    cardData={deck[cardIndex]} 
-                    cardDataIndex={0} 
-                    cardNumber={`${cardIndex + 1} of ${deck.length}`} 
-                    flipSpeed={transSpeed / 2} 
-                    onClick={flipCard} 
-                    showTargetLang={showTargetLang} 
+                <FlashCard
+                    cardData={deck[cardIndex]}
+                    cardDataIndex={0}
+                    cardIndex={cardIndex}
+                    decCardIndex={decCardIndex}
+                    deckLength={deck.length}
+                    flip={flipCard}
+                    flipSpeed={transSpeed / 2}
+                    incCardIndex={incCardIndex}
+                    isSliding={isSliding}
+                    showTargetLang={showTargetLang}
                     slideClass={transitionClass} />
-                <div className="tray">
-                    <button disabled={cardIndex === 0} onClick={decCardIndex}>Back</button>
-                    <button onClick={flipCard}>Flip</button>
-                    <button disabled={cardIndex === deck.length - 1} onClick={incCardIndex}>Next</button>
-                </div>
-                <div className="tray">
-                    <button onClick={switchLangMode}>{langMode === langModes.TRG_TO_SRC ? "Ltn. > Eng." : "Eng. > Ltn."}</button>
-                    <button onClick={shuffleDeck}>Shuffle</button>
+                <div className="tray tray-grid">
+                    {showControls && <div className={showControls ? "" : " hide-controls"}>
+                        <button disabled={cardIndex === 0} onClick={decCardIndex}>{svg.BACK}<span className="tooltip">previous card</span></button>
+                        <button onClick={flipCard}>{svg.FLIP}<span className="tooltip">flip card</span></button>
+                        <button disabled={cardIndex === deck.length - 1} onClick={incCardIndex}>{svg.NEXT}<span className="tooltip">next card</span></button>
+                    </div>}
+                    <div>
+                        <button onClick={switchLangMode}>{svg.LANGUAGE}<span className="tooltip">{langMode === langModes.SRC_TO_TRG ? "english to latin" : "latin to english"}</span></button>
+                        <button onClick={shuffleDeck} onMouseOver={() => {}}>{svg.SHUFFLE}<span className="tooltip">shuffle deck</span></button>
+                        <button onClick={() => setShowControls(prev => !prev)}>{svg.MORE}<span className="tooltip">show {showControls ? "less" : "more"}</span></button>
+                    </div>
                 </div>
             </div>
         </section>

@@ -1,20 +1,18 @@
 .activity-flash-card {
+    align-items: center;
     display: flex;
     flex-direction: column;
-    margin: 4rem;
-    overflow: hidden;
-    width: 100%;
+    gap: 1rem;
+    margin: 2rem 0;
 }
 
 .activity-flash-card > p {
     color: var(--grey-800);
+    font-size: 2rem;
+    text-shadow: 1px 1px 0 var(--grey-000);
 }
 
 .flash-card-container {
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    margin-left: 0rem;
     min-height: clamp(125px, 25vw, 250px);
     opacity: 1;
     perspective: 50rem;
@@ -35,12 +33,12 @@
 
 .flash-card-slide-left {
     opacity: 0;
-    margin-left: -16rem;
+    margin-left: -4rem;
 }
 
 .flash-card-slide-right {
     opacity: 0;
-    margin-left: 16rem;
+    margin-left: 4rem;
 }
 
 .flash-card-side {
@@ -56,19 +54,6 @@
     transform: rotateY(45deg);
     transition: 150ms;
     width: 100%;
-}
-
-.flash-card-side > p {
-    color: var(--grey-100);
-    font-size: 1.5rem;
-}
-
-.flash-card-source-lang {
-    transform: rotateY(90deg);
-}
-
-.flash-card-target-lang {
-    transform: rotateY(-90deg);
 }
 
 .flash-card-side::after {
@@ -91,6 +76,70 @@
     top: 0.5rem;
 }
 
+.flash-card-side > p {
+    position: absolute;
+    color: var(--grey-100);
+    font-size: 1.5rem;
+    z-index: 5;
+}
+
+.flash-card-source-lang {
+    transform: rotateY(90deg);
+}
+
+.flash-card-target-lang {
+    transform: rotateY(-90deg);
+}
+
 .flash-card--show {
     transform: rotateY(0deg);
+}
+
+.flash-card-clickable {
+    border-radius: 0.5rem;
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    height: 100%;
+    overflow: hidden;
+    position: absolute;
+    width: 100%;
+    z-index: 1;
+}
+
+.flash-card-clickable > div {
+    cursor: pointer;
+    opacity: 0;
+    transition: 150ms;
+}
+
+.flash-card-clickable > div:hover {
+    opacity: 0.75;
+}
+
+.flash-card-clickable > div:first-child {
+    background: linear-gradient(90deg, #eeeeeecc, #eeeeee00 90%);
+}
+
+.flash-card-clickable > div:last-child {
+    background: linear-gradient(270deg, #eeeeeecc, #eeeeee00 90%);
+}
+
+.hide-clickable {
+    height: 0;
+}
+
+.hide-controls {
+    height: 0;
+    opacity: 0;
+}
+
+.tray-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    margin-top: 0.75rem;
+}
+
+.tray-grid > div {
+    display: flex;
+    gap: 0.5rem;
 }

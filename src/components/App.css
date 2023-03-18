@@ -44,8 +44,10 @@ button {
     border-bottom: 3px solid var(--grey-000);
     border-radius: 2rem;
     color: var(--grey-100);
+    display: flex;
     font-size: 1.5rem;
     padding: 0.25rem 0.75rem;
+    position: relative;
 }
 
 button:disabled {
@@ -75,6 +77,66 @@ button:enabled:hover {
     background: linear-gradient(var(--grey-800), var(--grey-700));
 }
 
+button > .tooltip {
+    background: linear-gradient(var(--grey-300), var(--grey-100));
+    border: 1px solid var(--grey-700);
+    border-radius: 0 2rem 2rem 2rem;
+    box-shadow: var(--box-shadow);
+    color: var(--grey-800);
+    font-size: 1.2rem;
+    font-weight: 200;
+    left: 50%;
+    opacity: 0;
+    padding: 0.125rem 0.75rem 0.25rem 0.75rem;
+    pointer-events: none;
+    position: absolute;
+    text-align: center;
+    top: calc(100% + 1rem);
+    white-space: nowrap;
+    z-index: 1;
+}
+
+button:enabled:active > .tooltip {
+    top: calc(100% + 1rem - 2px);
+}
+  
+button:hover .tooltip {
+    animation: showTooltip 150ms linear 1s 1 normal both;
+}
+
+@keyframes showTooltip {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }    
+}
+
+button .tooltip::before {
+    border-color: transparent transparent var(--grey-700) transparent;
+    border-style: solid;
+    border-width: 0.6rem;
+    bottom: 100%;
+    content: " ";
+    left: -0.6rem;
+    position: absolute;
+    top: calc(-0.6rem);
+    transform: rotate(-135deg);
+}
+
+button .tooltip::after {
+    border-color: transparent transparent var(--grey-300) transparent;
+    border-style: solid;
+    border-width: 0.6rem;
+    bottom: 100%;
+    content: " ";
+    left: calc(-0.6rem + 1px);
+    position: absolute;
+    top: calc(-0.6rem + 3px);
+    transform: rotate(-135deg);
+}
+
 .activity {
     display: flex;
     justify-content: center;
@@ -84,7 +146,7 @@ button:enabled:hover {
 .tray {
     background: linear-gradient(var(--grey-600), var(--grey-500));
     border: 1px solid var(--grey-700);
-    border-radius: 4rem;
+    border-radius: 1.5rem;
     box-shadow: var(--box-shadow);
     color: var(--grey-100);
     display: flex;
@@ -92,4 +154,5 @@ button:enabled:hover {
     gap: 0.5rem;
     margin: auto;
     padding: 0.5rem;
+    width: fit-content;
 }
