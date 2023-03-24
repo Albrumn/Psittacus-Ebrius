@@ -21,6 +21,32 @@
     width: clamp(400px, 50vw, 500px);
 }
 
+.flash-card-info {
+    border: 1px solid var(--grey-500);
+    border-bottom-color: var(--grey-900);
+    border-left-color: var(--grey-600);
+    border-right-color: var(--grey-800);
+    border-radius: 0.25rem;
+    color: var(--grey-500);
+    font-size: 0.75rem;
+    position: absolute;
+    right: 0.5rem;
+    text-align: left;
+    text-shadow: 1px 1px 0 var(--grey-800);
+    top: 2rem;
+}
+
+.flash-card-info > div {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: space-between;
+    margin: 0.125rem 0.25rem;
+}
+
+.flash-card-info > div > p:first-child {
+    flex-grow: 1;
+}
+
 .flash-card-text {
     opacity: 1;
     margin-left: 0rem;
@@ -28,7 +54,7 @@
 }
 
 .flash-card-slide-trans {
-    transition: 150ms;
+    transition: var(--transition-speed);
 }
 
 .flash-card-slide-left {
@@ -52,7 +78,7 @@
     justify-content: center;
     position: absolute;
     transform: rotateY(45deg);
-    transition: 150ms;
+    transition: var(--transition-speed);
     width: 100%;
 }
 
@@ -76,6 +102,13 @@
     top: 0.5rem;
 }
 
+.flash-card-side > button {
+    top: 2rem;
+    right: -3.5rem;
+    position: absolute;
+    z-index: 10;
+}
+
 .flash-card-side > p {
     position: absolute;
     color: var(--grey-100);
@@ -84,14 +117,17 @@
 }
 
 .flash-card-source-lang {
+    filter: brightness(0.85);
     transform: rotateY(90deg);
 }
 
 .flash-card-target-lang {
+    filter: brightness(1.15);
     transform: rotateY(-90deg);
 }
 
 .flash-card--show {
+    filter: brightness(1);
     transform: rotateY(0deg);
 }
 
@@ -109,7 +145,7 @@
 .flash-card-clickable > div {
     cursor: pointer;
     opacity: 0;
-    transition: 150ms;
+    transition: var(--transition-speed);
 }
 
 .flash-card-clickable > div:hover {

@@ -1,12 +1,16 @@
 div {
     align-items: flex-start;
-    backdrop-filter: blur(0.125rem);
-    background: #00000044;
+    backdrop-filter: blur(0.25rem);
+    background: #0b0c0e55;/*var(--grey-000);*/
+    cursor: pointer;
     display: flex;
-    height: calc(100% - 124px); /* TODO: 124px is the height of the header */
+    height: 100%;
     justify-content: center;
-    padding-top: 5.5rem;
+    opacity: 0;
+    pointer-events: none;
     position: absolute;
+    top: 0;
+    transition: var(--transition-speed);
     width: 100%;
 }
 
@@ -16,9 +20,13 @@ div {
     border: 1px solid var(--grey-700);
     border-radius: 0.5rem;
     box-shadow: var(--box-shadow);
+    cursor: default;
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 2fr;
+    margin-top: 13.25rem;
     padding: 0.125rem 0;
+    transform: scale(1.5);
+    transition: var(--transition-speed);
 }
 
 .declension > * {
@@ -40,4 +48,16 @@ div {
     border-right-color: var(--grey-700);
     border-radius: 0.25rem;
     color: var(--grey-300);
+}
+
+.declension-span-2 {
+    font-weight: 600;
+    grid-column: 1/-1;
+    text-align: center;
+}
+
+.visible {
+    opacity: 1;
+    pointer-events: all;
+    transform: scale(1);
 }

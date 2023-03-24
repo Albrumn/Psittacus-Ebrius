@@ -2,7 +2,7 @@ import React from 'react';
 import Declension from './Declension';
 import FlashCard from "./FlashCard";
 import "./FlashCard.scoped.css";
-import { langModes, partsOfSpeech, svg } from '../constants/Global';
+import { declensions, langModes, partsOfSpeech, genders, svg, numbers } from '../constants/Global';
 
 //@ts-ignore
 export default function Activity_FlashCard() {
@@ -11,6 +11,7 @@ export default function Activity_FlashCard() {
     const transSpeed_half: number = transSpeed / 2; //milliseconds
     const transSpeed_tenth: number = transSpeed / 10; //milliseconds
     const [cardIndex, setCardIndex] = React.useState(0);
+    const [isDeskProcessed, setIsDeckProcessed] = React.useState(false);
     const [isFlipping, setIsFlipping] = React.useState(false);
     const [isSliding, setIsSliding] = React.useState(false);
     const [langMode, setLangMode] = React.useState(langModes.TRG_TO_SRC);
@@ -21,88 +22,88 @@ export default function Activity_FlashCard() {
     const [transitionClass, setTransitionClass] = React.useState("");
 
     const [deck, setDeck] = React.useState([
-        { src: "man", trg: "vir", dec: 2, loc: undefined, prt: partsOfSpeech.NOUN },
-        { src: "woman", trg: "fēmina", dec: 1, prt: partsOfSpeech.NOUN },
-        { src: "father", trg: "pater", dec: 3, prt: partsOfSpeech.NOUN },
-        { src: "mother", trg: "māter", dec: 3, prt: partsOfSpeech.NOUN },
-        { src: "husband", trg: "marītus", dec: 2, prt: partsOfSpeech.NOUN },
-        { src: "wife", trg: "uxor", dec: 3, prt: partsOfSpeech.NOUN },
-        { src: "boy", trg: "puer", dec: 2, prt: partsOfSpeech.NOUN },
-        { src: "girl", trg: "puella", dec: 1, prt: partsOfSpeech.NOUN },
-        { src: "son", trg: "fīlius", dec: 2, voc: "fīlī", prt: partsOfSpeech.NOUN },
-        { src: "daughter", trg: "fīlia", dec: 1, prt: partsOfSpeech.NOUN },
-        { src: "older adult", trg: "senex", dec: 3, prt: partsOfSpeech.NOUN },
-        { src: "young adult", trg: "iuvenis", dec: 3, prt: partsOfSpeech.NOUN },
-        { src: "men", trg: "virī", dec: 2, prt: partsOfSpeech.NOUN },
-        { src: "women", trg: "fēminae", dec: 1, prt: partsOfSpeech.NOUN },
-        { src: "fathers", trg: "patrēs", dec: 3, prt: partsOfSpeech.NOUN },
-        { src: "mothers", trg: "mātrēs", dec: 3, prt: partsOfSpeech.NOUN },
-        { src: "husbands", trg: "marītī", dec: 2, prt: partsOfSpeech.NOUN },
-        { src: "wives", trg: "uxorēs", dec: 3, prt: partsOfSpeech.NOUN },
-        { src: "boys", trg: "puerī", dec: 2, prt: partsOfSpeech.NOUN },
-        { src: "girls", trg: "puellae", dec: 1, prt: partsOfSpeech.NOUN },
-        { src: "sons", trg: "fīliī", dec: 2, voc: "fīlī", prt: partsOfSpeech.NOUN },
-        { src: "daughters", trg: "fīliae", dec: 1, prt: partsOfSpeech.NOUN },
-        { src: "older adults", trg: "senēs", dec: 3, prt: partsOfSpeech.NOUN },
-        { src: "young adults", trg: "iuvenēs", dec: 3, prt: partsOfSpeech.NOUN }
+        { src: "man", trg: "vir", dec: declensions._2, loc: undefined, prt: partsOfSpeech.NOUN, gnd: genders.M, num: numbers.S },
+        { src: "woman", trg: "fēmina", dec: declensions._1, prt: partsOfSpeech.NOUN, gnd: genders.F, num: numbers.S },
+        { src: "father", trg: "pater", dec: declensions._3, prt: partsOfSpeech.NOUN, gnd: genders.M, num: numbers.S },
+        { src: "mother", trg: "māter", dec: declensions._3, prt: partsOfSpeech.NOUN, gnd: genders.F, num: numbers.S },
+        { src: "husband", trg: "marītus", dec: declensions._2, prt: partsOfSpeech.NOUN, gnd: genders.M, num: numbers.S },
+        { src: "wife", trg: "uxor", dec: declensions._3, prt: partsOfSpeech.NOUN, gnd: genders.F, num: numbers.S },
+        { src: "boy", trg: "puer", dec: declensions._2, prt: partsOfSpeech.NOUN, gnd: genders.M, num: numbers.S },
+        { src: "girl", trg: "puella", dec: declensions._1, prt: partsOfSpeech.NOUN, gnd: genders.F, num: numbers.S },
+        { src: "son", trg: "fīlius", dec: declensions._2, voc: "fīlī", prt: partsOfSpeech.NOUN, gnd: genders.M, num: numbers.S },
+        { src: "daughter", trg: "fīlia", dec: declensions._1, prt: partsOfSpeech.NOUN, gnd: genders.F, num: numbers.S },
+        { src: "older adult", trg: "senex", dec: declensions._3, prt: partsOfSpeech.NOUN, gnd: genders.FM, num: numbers.S },
+        { src: "young adult", trg: "iuvenis", dec: declensions._3, prt: partsOfSpeech.NOUN, gnd: genders.FM, num: numbers.S },
+        { src: "men", trg: "virī", dec: declensions._2, prt: partsOfSpeech.NOUN, gnd: genders.M, num: numbers.P },
+        { src: "women", trg: "fēminae", dec: declensions._1, prt: partsOfSpeech.NOUN, gnd: genders.F, num: numbers.P },
+        { src: "fathers", trg: "patrēs", dec: declensions._3, prt: partsOfSpeech.NOUN, gnd: genders.M, num: numbers.P },
+        { src: "mothers", trg: "mātrēs", dec: declensions._3, prt: partsOfSpeech.NOUN, gnd: genders.F, num: numbers.P },
+        { src: "husbands", trg: "marītī", dec: declensions._2, prt: partsOfSpeech.NOUN, gnd: genders.M, num: numbers.P },
+        { src: "wives", trg: "uxorēs", dec: declensions._3, prt: partsOfSpeech.NOUN, gnd: genders.F, num: numbers.P },
+        { src: "boys", trg: "puerī", dec: declensions._2, prt: partsOfSpeech.NOUN, gnd: genders.M, num: numbers.P },
+        { src: "girls", trg: "puellae", dec: declensions._1, prt: partsOfSpeech.NOUN, gnd: genders.F, num: numbers.P },
+        { src: "sons", trg: "fīliī", dec: declensions._2, voc: "fīlī", prt: partsOfSpeech.NOUN, gnd: genders.M, num: numbers.P },
+        { src: "daughters", trg: "fīliae", dec: declensions._1, prt: partsOfSpeech.NOUN, gnd: genders.F, num: numbers.P },
+        { src: "older adults", trg: "senēs", dec: declensions._3, prt: partsOfSpeech.NOUN, gnd: genders.FM, num: numbers.P },
+        { src: "young adults", trg: "iuvenēs", dec: declensions._3, prt: partsOfSpeech.NOUN, gnd: genders.FM, num: numbers.P }
     ]);
 
-    function decline(): any {
-        const term = deck[cardIndex].trg;
-        switch (deck[cardIndex].dec) {
-            case 1:
+    function decline(card: any): any {
+        const term = card.trg;
+        switch (card.dec) {
+            case declensions._1:
                 if (term.substring(term.length - 1) === "a") {
                     const stem = term.substring(0, term.length - 1);
-                    return { nom: stem + "a", gen: stem + "ae", dat: stem + "ae", acc: stem + "am", abl: stem + "ā", voc: deck[cardIndex].voc || stem + "a", loc: deck[cardIndex].loc };
+                    return { nom: stem + "a", gen: stem + "ae", dat: stem + "ae", acc: stem + "am", abl: stem + "ā", voc: card.voc || stem + "a", loc: card.loc };
                 }
                 if (term.substring(term.length - 2) === "ae") {
                     const stem = term.substring(0, term.length - 2);
-                    return { nom: stem + "ae", gen: stem + "ārum", dat: stem + "īs", acc: stem + "ās", abl: stem + "īs", voc: deck[cardIndex].voc || stem + "ae", loc: deck[cardIndex].loc };
+                    return { nom: stem + "ae", gen: stem + "ārum", dat: stem + "īs", acc: stem + "ās", abl: stem + "īs", voc: card.voc || stem + "ae", loc: card.loc };
                 }
                 return {};
-            case 2:
+            case declensions._2:
                 if (term.substring(term.length - 2) === "us") {
                     const stem = term.substring(0, term.length - 2);
-                    return { nom: stem + "us", gen: stem + "ī", dat: stem + "ō", acc: stem + "um", abl: stem + "ō", voc: deck[cardIndex].voc || stem + "e", loc: deck[cardIndex].loc };
+                    return { nom: stem + "us", gen: stem + "ī", dat: stem + "ō", acc: stem + "um", abl: stem + "ō", voc: card.voc || stem + "e", loc: card.loc };
                 }
                 if (term.substring(term.length - 1) === "r") {
                     const stem = term.substring(0, term.length - 1);
-                    return { nom: stem + "r", gen: stem + "rī", dat: stem + "rō", acc: stem + "rum", abl: stem + "rō", voc: deck[cardIndex].voc || stem + "r", loc: deck[cardIndex].loc };
+                    return { nom: stem + "r", gen: stem + "rī", dat: stem + "rō", acc: stem + "rum", abl: stem + "rō", voc: card.voc || stem + "r", loc: card.loc };
                 }
                 if (term.substring(term.length - 1) === "ī") {
                     const stem = term.substring(0, term.length - 1);
-                    return { nom: stem + "ī", gen: stem + "ōrum", dat: stem + "īs", acc: stem + "ōs", abl: stem + "īs", voc: deck[cardIndex].voc || stem + "ī", loc: deck[cardIndex].loc };
+                    return { nom: stem + "ī", gen: stem + "ōrum", dat: stem + "īs", acc: stem + "ōs", abl: stem + "īs", voc: card.voc || stem + "ī", loc: card.loc };
                 }
                 return {};
-            case 3:
+            case declensions._3:
                 if (term.substring(term.length - 2) === "er") {
                     const stem = term.substring(0, term.length - 2);
-                    return { nom: stem + "er", gen: stem + "ris", dat: stem + "rī", acc: stem + "rem", abl: stem + "re", voc: deck[cardIndex].voc || stem + "er", loc: deck[cardIndex].loc };
+                    return { nom: stem + "er", gen: stem + "ris", dat: stem + "rī", acc: stem + "rem", abl: stem + "re", voc: card.voc || stem + "er", loc: card.loc };
                 }
                 if (term.substring(term.length - 2) === "ex") {
                     const stem = term.substring(0, term.length - 2);
-                    return { nom: stem + "ex", gen: stem + "is", dat: stem + "ī", acc: stem + "em", abl: stem + "e", voc: deck[cardIndex].voc || stem + "ex", loc: deck[cardIndex].loc };
+                    return { nom: stem + "ex", gen: stem + "is", dat: stem + "ī", acc: stem + "em", abl: stem + "e", voc: card.voc || stem + "ex", loc: card.loc };
                 }
                 if (term.substring(term.length - 2) === "is") {
                     const stem = term.substring(0, term.length - 2);
-                    return { nom: stem + "is", gen: stem + "is", dat: stem + "ī", acc: stem + "em", abl: stem + "e", voc: deck[cardIndex].voc || stem + "is", loc: deck[cardIndex].loc };
+                    return { nom: stem + "is", gen: stem + "is", dat: stem + "ī", acc: stem + "em", abl: stem + "e", voc: card.voc || stem + "is", loc: card.loc };
                 }
                 if (term.substring(term.length - 2) === "or") {
                     const stem = term.substring(0, term.length - 2);
-                    return { nom: stem + "or", gen: stem + "ōris", dat: stem + "ōrī", acc: stem + "ōrem", abl: stem + "ōre", voc: deck[cardIndex].voc || stem + "or", loc: deck[cardIndex].loc };
+                    return { nom: stem + "or", gen: stem + "ōris", dat: stem + "ōrī", acc: stem + "ōrem", abl: stem + "ōre", voc: card.voc || stem + "or", loc: card.loc };
                 }
                 if (term.substring(term.length - 2) === "us") {
                     const stem = term.substring(0, term.length - 2);
-                    return { nom: stem + "us", gen: stem + "oris", dat: stem + "orī", acc: stem + "us", abl: stem + "ore", voc: deck[cardIndex].voc || stem + "us", loc: deck[cardIndex].loc };
+                    return { nom: stem + "us", gen: stem + "oris", dat: stem + "orī", acc: stem + "us", abl: stem + "ore", voc: card.voc || stem + "us", loc: card.loc };
                 }
                 /* plural */
                 if (term.substring(term.length - 2) === "ēs") {
                     const stem = term.substring(0, term.length - 2);
-                    return { nom: stem + "ēs", gen: stem + "um", dat: stem + "ibus", acc: stem + "ēs", abl: stem + "ibus", voc: deck[cardIndex].voc || stem + "ēs", loc: deck[cardIndex].loc };
+                    return { nom: stem + "ēs", gen: stem + "um", dat: stem + "ibus", acc: stem + "ēs", abl: stem + "ibus", voc: card.voc || stem + "ēs", loc: card.loc };
                 }
                 if (term.substring(term.length - 1) === "a") {
                     const stem = term.substring(0, term.length - 1);
-                    return { nom: stem + "a", gen: stem + "um", dat: stem + "ibus", acc: stem + "a", abl: stem + "ibus", voc: deck[cardIndex].voc || stem + "a", loc: deck[cardIndex].loc };
+                    return { nom: stem + "a", gen: stem + "um", dat: stem + "ibus", acc: stem + "a", abl: stem + "ibus", voc: card.voc || stem + "a", loc: card.loc };
                 }
                 return {};
             default:
@@ -147,6 +148,11 @@ export default function Activity_FlashCard() {
     }
 
     function switchLangMode() {
+        if (isFlipping || isSliding) return;
+
+        setIsFlipping(true);
+        setTimeout(() => { setIsFlipping(false); }, transSpeed);
+        
         if (langMode === langModes.SRC_TO_TRG)
             setLangMode(langModes.TRG_TO_SRC);
         else
@@ -210,6 +216,16 @@ export default function Activity_FlashCard() {
         setTransitionClass(tempTransitionClass);
     }, [slideDirection]);
 
+    if (!isDeskProcessed) {
+        setIsDeckProcessed(true);
+        deck.forEach(card => {
+            if (card.prt === partsOfSpeech.NOUN) {
+                //@ts-ignore
+                card.inf = decline(card);
+            }
+        });
+    }
+
     return (
         <section className="activity">
             <div className="activity-flash-card">
@@ -224,6 +240,7 @@ export default function Activity_FlashCard() {
                     flipSpeed={transSpeed / 2}
                     incCardIndex={incCardIndex}
                     isSliding={isSliding}
+                    onMoreInfo={deck[cardIndex].prt === partsOfSpeech.NOUN ? () => setShowDeclension(true) : () => {}}
                     showTargetLang={showTargetLang}
                     slideClass={transitionClass} />
                 <div className="tray tray-grid">
@@ -235,13 +252,11 @@ export default function Activity_FlashCard() {
                     <div>
                         <button onClick={switchLangMode}>{svg.LANGUAGE}<span className="tooltip">{langMode === langModes.SRC_TO_TRG ? "english to latin" : "latin to english"}</span></button>
                         <button onClick={shuffleDeck} onMouseOver={() => {}}>{svg.SHUFFLE}<span className="tooltip">shuffle deck</span></button>
-                        {deck[cardIndex].prt === partsOfSpeech.VERB &&<button onClick={decCardIndex}>{svg.CONJUGATION}<span className="tooltip">show conjugation</span></button>}
-                        {deck[cardIndex].prt === partsOfSpeech.NOUN &&<button onClick={() => setShowDeclension(true)}>{svg.DECLENSION}<span className="tooltip">show declension</span></button>}
                         <button onClick={() => setShowControls(prev => !prev)}>{svg.MORE}<span className="tooltip">show {showControls ? "less" : "more"}</span></button>
                     </div>
                 </div>
             </div>
-            {showDeclension === true && <Declension term={decline()} hide={() => setShowDeclension(false)} />}
+            <Declension showDeclension={showDeclension} card={deck[cardIndex]} hide={() => setShowDeclension(false)} />
         </section>
     );
 }
