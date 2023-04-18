@@ -3,9 +3,10 @@ import Declension from './Declension';
 import FlashCard from "./FlashCard";
 import "./FlashCard.scoped.css";
 import { declensions, langModes, partsOfSpeech, genders, svg, numbers } from '../constants/Global';
+import { Link } from "react-router-dom";
 
 //@ts-ignore
-export default function Activity_FlashCard() {
+export default function Activity_FlashCard(props: any) {
     const slideDirections = { AT_LEFT: "at-left", AT_RIGHT: "at-right", FROM_LEFT: "from-left", FROM_RIGHT: "from-right", PAUSE_LEFT: "pause-left", PAUSE_RIGHT: "pause-right", NONE: "none", TO_LEFT: "to-left", TO_RIGHT: "to-right", UNPAUSE_LEFT: "unpause-left", UNPAUSE_RIGHT: "unpause-right" };
     const transSpeed: number = 300; //milliseconds
     const transSpeed_half: number = transSpeed / 2; //milliseconds
@@ -228,6 +229,8 @@ export default function Activity_FlashCard() {
 
     return (
         <section className="activity">
+            <h1>{props.test}</h1>
+            <Link to="/" onClick={decCardIndex}><button disabled={false}>{svg.BACK}&nbsp;Decks</button></Link>
             <div className="activity-flash-card">
                 <p>Sample Unit — Flash Cards</p>
                 <FlashCard

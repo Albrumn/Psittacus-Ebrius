@@ -3,6 +3,7 @@ header {
     border-bottom: 1px solid var(--grey-600);
     box-shadow: var(--box-shadow);
     color: var(--grey-800);
+    margin-bottom: 2rem;
     padding: 0.5rem;
 }
 

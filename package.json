@@ -44,6 +44,7 @@
     "@craco/craco": "^7.1.0",
     "babel-plugin-react-scoped-css": "^1.1.1",
     "craco-plugin-scoped-css": "^1.1.1",
+    "react-router-dom": "^6.10.0",
     "scoped-css-loader": "^1.0.0",
     "webpack": "^5.76.2",
     "webpack-cli": "^5.0.1",
