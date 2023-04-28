@@ -229,7 +229,6 @@ export default function Activity_FlashCard(props: any) {
 
     return (
         <section className="activity">
-            <h1>{props.test}</h1>
             <Link to="/" onClick={decCardIndex}><button disabled={false}>{svg.BACK}&nbsp;Decks</button></Link>
             <div className="activity-flash-card">
                 <p>Sample Unit — Flash Cards</p>
