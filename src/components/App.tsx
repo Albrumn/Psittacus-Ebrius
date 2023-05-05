@@ -7,7 +7,7 @@ import { Route, Routes } from "react-router-dom";
 import { SelectedFlashCard } from "../helper/Context";
 
 export default function App() {
-    const [selectedFlashCard, setSelectedFlashCard] = React.useState(-1);
+    const [selectedFlashCard, setSelectedFlashCard] = React.useState({});
 
     return (
         //@ts-ignore
@@ -15,7 +15,7 @@ export default function App() {
             <Header />
             <Routes>
                 <Route path="/" element={<Menu_FlashCard />} />
-                <Route path="/flashcards" element={<Activity_FlashCard test={selectedFlashCard} />} />
+                <Route path="/flashcards" element={<Activity_FlashCard data={selectedFlashCard} />} />
             </Routes>
         </SelectedFlashCard.Provider>
     );

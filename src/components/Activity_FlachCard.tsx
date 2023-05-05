@@ -22,7 +22,9 @@ export default function Activity_FlashCard(props: any) {
     const [slideDirection, setSlideDirection] = React.useState(slideDirections.NONE)
     const [transitionClass, setTransitionClass] = React.useState("");
 
-    const [deck, setDeck] = React.useState([
+    const [deck, setDeck] = React.useState(props.data.deck);
+
+    /* const [deck, setDeck] = React.useState([
         { src: "man", trg: "vir", dec: declensions._2, loc: undefined, prt: partsOfSpeech.NOUN, gnd: genders.M, num: numbers.S },
         { src: "woman", trg: "fēmina", dec: declensions._1, prt: partsOfSpeech.NOUN, gnd: genders.F, num: numbers.S },
         { src: "father", trg: "pater", dec: declensions._3, prt: partsOfSpeech.NOUN, gnd: genders.M, num: numbers.S },
@@ -47,7 +49,7 @@ export default function Activity_FlashCard(props: any) {
         { src: "daughters", trg: "fīliae", dec: declensions._1, prt: partsOfSpeech.NOUN, gnd: genders.F, num: numbers.P },
         { src: "older adults", trg: "senēs", dec: declensions._3, prt: partsOfSpeech.NOUN, gnd: genders.FM, num: numbers.P },
         { src: "young adults", trg: "iuvenēs", dec: declensions._3, prt: partsOfSpeech.NOUN, gnd: genders.FM, num: numbers.P }
-    ]);
+    ]); */
 
     function decline(card: any): any {
         const term = card.trg;
@@ -219,7 +221,7 @@ export default function Activity_FlashCard(props: any) {
 
     if (!isDeskProcessed) {
         setIsDeckProcessed(true);
-        deck.forEach(card => {
+        deck.forEach((card: any) => {
             if (card.prt === partsOfSpeech.NOUN) {
                 //@ts-ignore
                 card.inf = decline(card);
@@ -229,10 +231,9 @@ export default function Activity_FlashCard(props: any) {
 
     return (
         <section className="activity">
-            <h1>{props.test}</h1>
             <Link to="/" onClick={decCardIndex}><button disabled={false}>{svg.BACK}&nbsp;Decks</button></Link>
             <div className="activity-flash-card">
-                <p>Sample Unit — Flash Cards</p>
+                <p>{props.data.title}</p>
                 <FlashCard
                     cardData={deck[cardIndex]}
                     cardDataIndex={0}

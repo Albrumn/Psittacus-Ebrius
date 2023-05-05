@@ -1,0 +1,29 @@
+{
+    "title": "Sample Unit",
+    "deck": [
+        { "src": "man", "trg": "vir", "dec": "second", "loc": "undefined", "prt": "noun", "gnd": "masc.", "num": "sing." },
+        { "src": "woman", "trg": "fēmina", "dec": "first", "prt": "noun", "gnd": "fem.", "num": "sing." },
+        { "src": "father", "trg": "pater", "dec": "third", "prt": "noun", "gnd": "masc.", "num": "sing." },
+        { "src": "mother", "trg": "māter", "dec": "third", "prt": "noun", "gnd": "fem.", "num": "sing." },
+        { "src": "husband", "trg": "marītus", "dec": "second", "prt": "noun", "gnd": "masc.", "num": "sing." },
+        { "src": "wife", "trg": "uxor", "dec": "third", "prt": "noun", "gnd": "fem.", "num": "sing." },
+        { "src": "boy", "trg": "puer", "dec": "second", "prt": "noun", "gnd": "masc.", "num": "sing." },
+        { "src": "girl", "trg": "puella", "dec": "first", "prt": "noun", "gnd": "fem.", "num": "sing." },
+        { "src": "son", "trg": "fīlius", "dec": "second", "voc": "fīlī", "prt": "noun", "gnd": "masc.", "num": "sing." },
+        { "src": "daughter", "trg": "fīlia", "dec": "first", "prt": "noun", "gnd": "fem.", "num": "sing." },
+        { "src": "older adult", "trg": "senex", "dec": "third", "prt": "noun", "gnd": "fem./masc.", "num": "sing." },
+        { "src": "young adult", "trg": "iuvenis", "dec": "third", "prt": "noun", "gnd": "fem./masc.", "num": "sing." },
+        { "src": "men", "trg": "virī", "dec": "second", "prt": "noun", "gnd": "masc.", "num": "plur." },
+        { "src": "women", "trg": "fēminae", "dec": "first", "prt": "noun", "gnd": "fem.", "num": "plur." },
+        { "src": "fathers", "trg": "patrēs", "dec": "third", "prt": "noun", "gnd": "masc.", "num": "plur." },
+        { "src": "mothers", "trg": "mātrēs", "dec": "third", "prt": "noun", "gnd": "fem.", "num": "plur." },
+        { "src": "husbands", "trg": "marītī", "dec": "second", "prt": "noun", "gnd": "masc.", "num": "plur." },
+        { "src": "wives", "trg": "uxorēs", "dec": "third", "prt": "noun", "gnd": "fem.", "num": "plur." },
+        { "src": "boys", "trg": "puerī", "dec": "second", "prt": "noun", "gnd": "masc.", "num": "plur." },
+        { "src": "girls", "trg": "puellae", "dec": "first", "prt": "noun", "gnd": "fem.", "num": "plur." },
+        { "src": "sons", "trg": "fīliī", "dec": "second", "voc": "fīlī", "prt": "noun", "gnd": "masc.", "num": "plur." },
+        { "src": "daughters", "trg": "fīliae", "dec": "first", "prt": "noun", "gnd": "fem.", "num": "plur." },
+        { "src": "older adults", "trg": "senēs", "dec": "third", "prt": "noun", "gnd": "fem./masc.", "num": "plur." },
+        { "src": "young adults", "trg": "iuvenēs", "dec": "third", "prt": "noun", "gnd": "fem./masc.", "num": "plur." }
+    ]
+}
