@@ -24,33 +24,6 @@ export default function Activity_FlashCard(props: any) {
 
     const [deck, setDeck] = React.useState(props.data.deck);
 
-    /* const [deck, setDeck] = React.useState([
-        { src: "man", trg: "vir", dec: declensions._2, loc: undefined, prt: partsOfSpeech.NOUN, gnd: genders.M, num: numbers.S },
-        { src: "woman", trg: "fēmina", dec: declensions._1, prt: partsOfSpeech.NOUN, gnd: genders.F, num: numbers.S },
-        { src: "father", trg: "pater", dec: declensions._3, prt: partsOfSpeech.NOUN, gnd: genders.M, num: numbers.S },
-        { src: "mother", trg: "māter", dec: declensions._3, prt: partsOfSpeech.NOUN, gnd: genders.F, num: numbers.S },
-        { src: "husband", trg: "marītus", dec: declensions._2, prt: partsOfSpeech.NOUN, gnd: genders.M, num: numbers.S },
-        { src: "wife", trg: "uxor", dec: declensions._3, prt: partsOfSpeech.NOUN, gnd: genders.F, num: numbers.S },
-        { src: "boy", trg: "puer", dec: declensions._2, prt: partsOfSpeech.NOUN, gnd: genders.M, num: numbers.S },
-        { src: "girl", trg: "puella", dec: declensions._1, prt: partsOfSpeech.NOUN, gnd: genders.F, num: numbers.S },
-        { src: "son", trg: "fīlius", dec: declensions._2, voc: "fīlī", prt: partsOfSpeech.NOUN, gnd: genders.M, num: numbers.S },
-        { src: "daughter", trg: "fīlia", dec: declensions._1, prt: partsOfSpeech.NOUN, gnd: genders.F, num: numbers.S },
-        { src: "older adult", trg: "senex", dec: declensions._3, prt: partsOfSpeech.NOUN, gnd: genders.FM, num: numbers.S },
-        { src: "young adult", trg: "iuvenis", dec: declensions._3, prt: partsOfSpeech.NOUN, gnd: genders.FM, num: numbers.S },
-        { src: "men", trg: "virī", dec: declensions._2, prt: partsOfSpeech.NOUN, gnd: genders.M, num: numbers.P },
-        { src: "women", trg: "fēminae", dec: declensions._1, prt: partsOfSpeech.NOUN, gnd: genders.F, num: numbers.P },
-        { src: "fathers", trg: "patrēs", dec: declensions._3, prt: partsOfSpeech.NOUN, gnd: genders.M, num: numbers.P },
-        { src: "mothers", trg: "mātrēs", dec: declensions._3, prt: partsOfSpeech.NOUN, gnd: genders.F, num: numbers.P },
-        { src: "husbands", trg: "marītī", dec: declensions._2, prt: partsOfSpeech.NOUN, gnd: genders.M, num: numbers.P },
-        { src: "wives", trg: "uxorēs", dec: declensions._3, prt: partsOfSpeech.NOUN, gnd: genders.F, num: numbers.P },
-        { src: "boys", trg: "puerī", dec: declensions._2, prt: partsOfSpeech.NOUN, gnd: genders.M, num: numbers.P },
-        { src: "girls", trg: "puellae", dec: declensions._1, prt: partsOfSpeech.NOUN, gnd: genders.F, num: numbers.P },
-        { src: "sons", trg: "fīliī", dec: declensions._2, voc: "fīlī", prt: partsOfSpeech.NOUN, gnd: genders.M, num: numbers.P },
-        { src: "daughters", trg: "fīliae", dec: declensions._1, prt: partsOfSpeech.NOUN, gnd: genders.F, num: numbers.P },
-        { src: "older adults", trg: "senēs", dec: declensions._3, prt: partsOfSpeech.NOUN, gnd: genders.FM, num: numbers.P },
-        { src: "young adults", trg: "iuvenēs", dec: declensions._3, prt: partsOfSpeech.NOUN, gnd: genders.FM, num: numbers.P }
-    ]); */
-
     function decline(card: any): any {
         const term = card.trg;
         switch (card.dec) {
@@ -65,6 +38,10 @@ export default function Activity_FlashCard(props: any) {
                 }
                 return {};
             case declensions._2:
+                if (term.substring(term.length - 2) === "um") {
+                    const stem = term.substring(0, term.length - 2);
+                    return { nom: stem + "um", gen: stem + "ī", dat: stem + "ō", acc: stem + "um", abl: stem + "ō", voc: card.voc || stem + "um", loc: card.loc };
+                }
                 if (term.substring(term.length - 2) === "us") {
                     const stem = term.substring(0, term.length - 2);
                     return { nom: stem + "us", gen: stem + "ī", dat: stem + "ō", acc: stem + "um", abl: stem + "ō", voc: card.voc || stem + "e", loc: card.loc };
@@ -219,19 +196,23 @@ export default function Activity_FlashCard(props: any) {
         setTransitionClass(tempTransitionClass);
     }, [slideDirection]);
 
+    React.useEffect(() => {
+        shuffleDeck();
+    }, []);
+
     if (!isDeskProcessed) {
         setIsDeckProcessed(true);
         deck.forEach((card: any) => {
             if (card.prt === partsOfSpeech.NOUN) {
-                //@ts-ignore
                 card.inf = decline(card);
             }
         });
     }
 
     return (
+        <>
+        <Link className="back-button" to="/" onClick={decCardIndex}><button disabled={false}>{svg.BACK}&nbsp;Decks</button></Link>
         <section className="activity">
-            <Link to="/" onClick={decCardIndex}><button disabled={false}>{svg.BACK}&nbsp;Decks</button></Link>
             <div className="activity-flash-card">
                 <p>{props.data.title}</p>
                 <FlashCard
@@ -243,6 +224,7 @@ export default function Activity_FlashCard(props: any) {
                     flip={flipCard}
                     flipSpeed={transSpeed / 2}
                     incCardIndex={incCardIndex}
+                    isFlipping={isFlipping}
                     isSliding={isSliding}
                     onMoreInfo={deck[cardIndex].prt === partsOfSpeech.NOUN ? () => setShowDeclension(true) : () => {}}
                     showTargetLang={showTargetLang}
@@ -260,7 +242,8 @@ export default function Activity_FlashCard(props: any) {
                     </div>
                 </div>
             </div>
-            <Declension showDeclension={showDeclension} card={deck[cardIndex]} hide={() => setShowDeclension(false)} />
+            {deck[cardIndex].prt === partsOfSpeech.NOUN && <Declension showDeclension={showDeclension} card={deck[cardIndex]} hide={() => setShowDeclension(false)} />}
         </section>
+        </>
     );
 }

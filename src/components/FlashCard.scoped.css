@@ -12,6 +12,12 @@
     text-shadow: 1px 1px 0 var(--grey-000);
 }
 
+.back-button {
+    position: absolute;
+    left: calc(50% - clamp(200px, 25vw, 250px));
+    margin-top: -1rem;
+}
+
 .flash-card-container {
     min-height: clamp(125px, 25vw, 250px);
     opacity: 1;
@@ -150,6 +156,10 @@
 
 .flash-card-clickable > div:hover {
     opacity: 0.75;
+}
+
+.fc-hide-clickable {
+    opacity: 0;
 }
 
 .flash-card-clickable > div:first-child {

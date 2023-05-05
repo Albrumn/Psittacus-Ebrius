@@ -1,5 +1,6 @@
 {
     "title": "Sample Unit",
+    "description": "Just a sample unit for testing purposes.",
     "deck": [
         { "src": "man", "trg": "vir", "dec": "second", "loc": "undefined", "prt": "noun", "gnd": "masc.", "num": "sing." },
         { "src": "woman", "trg": "fēmina", "dec": "first", "prt": "noun", "gnd": "fem.", "num": "sing." },

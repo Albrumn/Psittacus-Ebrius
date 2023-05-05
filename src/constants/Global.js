@@ -3,7 +3,7 @@ const declensions = { _1: "first", _2: "second", _3: "third", _4: "fourth", _5: 
 const genders = { F: "fem.", FM: "fem./masc.", M: "masc.", N: "neut." };
 const langModes = { SRC_TO_TRG: "source-to-target", TRG_TO_SRC: "target-to-source"};
 const numbers = { S: "sing.", P: "plur."};
-const partsOfSpeech = { NOUN: "noun", VERB: "verb" };
+const partsOfSpeech = { ADJECTIVE: "adjective", ADVERB: "adverb", NOUN: "noun", NUMERAL: "numeral", VERB: "verb" };
 const themeModes = { DARK: "dark", LIGHT: "light" };
 
 const svg = {

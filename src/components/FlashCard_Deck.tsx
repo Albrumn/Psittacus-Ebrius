@@ -8,11 +8,12 @@ export default function FlashCard_Deck(props: any) {
     const {selectedFlashCard, setSelectedFlashCard} = React.useContext(SelectedFlashCard);
 
     return (
-            <Link to="flashcards" onClick={() => {setSelectedFlashCard(props.id)}}>
-        <div className="flashcard-deck">
-                    <h2>{props.name}</h2>
-                    <p>{props.description}</p>
-        </div>
-            </Link>
+        <Link to="flashcards" onClick={() => { setSelectedFlashCard(props.id); }}>
+            <div className="flashcard-deck">
+                        <p className="fc-deck-length">{props.length} cards</p>
+                        <h2>{props.name}</h2>
+                        <p>{props.description}</p>
+            </div>
+        </Link>
     );
 }

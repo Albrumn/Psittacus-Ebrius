@@ -4,7 +4,7 @@ export default function Declension(props: any) {
     return (
         <div className={props.showDeclension ? "visible" : ""} onClick={props.hide}>
             <section className={"declension" + (props.showDeclension ? " visible" : "")} onClick={(evt) => {evt.stopPropagation();} }>
-                <p className="declension-case declension-span-2">Delc. {props.card.dec} — Gndr. {props.card.gnd} — Num. {props.card.num}</p>
+                <p className="declension-case declension-span-2">Decl. {props.card.dec} — Gndr. {props.card.gnd} — Num. {props.card.num}</p>
                 <p className="declension-case">Nominative</p><p className="declension-inflection">{props.card.inf.nom}</p>
                 <p className="declension-case">Genitive</p><p className="declension-inflection">{props.card.inf.gen}</p>
                 <p className="declension-case">Dative</p><p className="declension-inflection">{props.card.inf.dat}</p>
