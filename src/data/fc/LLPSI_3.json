@@ -9,7 +9,7 @@
         { "src": "angry", "trg": "īrātus", "dec": "second", "prt": "adjective", "num": "sing." },
         { "src": "moral", "trg": "probus", "dec": "second", "prt": "adjective", "num": "sing." },
         { "src": "immoral", "trg": "improbus", "dec": "second", "prt": "adjective", "num": "sing." },
-        { "src": "to sing", "trg": "cantō, cantāre, cantāvī, cantātum", "prt": "verb" },
+        { "src": "to sing", "trg": "cantō, cantāre, cantāvī, cantātum", "con": "first", "prt": "verb" },
         { "src": "to hit; to punch", "trg": "pulsō, pulsāre, pulsāvī, pulsātum", "con": "first", "prt": "verb" },
         { "src": "to cry; to cry out", "trg": "plōrō, plōrāre, plōrāvī, plōrātum", "con": "first", "prt": "verb" },
         { "src": "to laugh", "trg": "rīdeō, rīdēre, rīsī, rīsum", "con": "second", "prt": "verb" },

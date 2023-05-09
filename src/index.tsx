@@ -3,7 +3,7 @@ import App from './components/App';
 import { BrowserRouter } from "react-router-dom";
 
 ReactDOM.createRoot(document.body).render(
-        <BrowserRouter>
+        <BrowserRouter basename="/psittacusebrius">
                 <App />
         </BrowserRouter>
 );

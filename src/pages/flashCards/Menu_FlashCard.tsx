@@ -1,15 +1,10 @@
-import React from "react";
 import "../Page.scoped.css";
 import FlashCard_Deck from "../../components/FlashCard_Deck";
-import { Link } from "react-router-dom";
-import { SelectedFlashCard } from "../../helper/Context";
 import deck_0 from "../../data/fc/LLPSI_1.json";
 import deck_1 from "../../data/fc/LLPSI_2.json";
 import deck_2 from "../../data/fc/LLPSI_3.json";
 
 export default function Menu_FlashCard() {
-    const [selectedFlashCard, setSelectedFlashCard] = React.useState({});
-
     return (
         <main>
             <h2>Flash Cards</h2>
